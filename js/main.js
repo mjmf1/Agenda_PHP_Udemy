@@ -36,9 +36,9 @@ function leerformulario(e) {
     infContacto.append("telefono", telefono);
     infContacto.append("accion", accion);
 
-     console.log(...infContacto);
+     //console.log(...infContacto);
 
-    if (accion === "Crear") {
+    if (accion === 'Crear') {
       /* crearemos un nuevo  contacto*/
       insertarBD(infContacto);
     } else {
@@ -136,16 +136,17 @@ function actualizarRegistro(datos){
   //leer la respuesta
   xhr.onload = function(){
     if(this.status === 200){
-      const respuesta =(xhr.responseText);
+      const respuesta =JSON.parse(xhr.responseText);
       
-      console.log(respuesta);
+     // console.log(respuesta);
     }
+    setTimeout(() => {
+      window.location.href = 'index.php';
+    }, 4000);
   }
 
   //enviar la peticion
   xhr.send(datos);
-
-
 
 }
 // eliminar el contacto
@@ -171,21 +172,24 @@ function eliminarContacto(e) {
       xhr.onload = function() {
         if (this.status === 200) {
           const resultado =JSON.parse(xhr.responseText);
-          console.log(resultado);
+          
 
           // console.log(resultado);
 
-          if (resultado.respuesta == "correcto") {
+          if (resultado.respuesta === "correcto") {
             //eliminar registro del DOM
               console.log(e.target.parentElement.parentElement.parentElement);
               e.target.parentElement.parentElement.parentElement.remove();
 
             //mostrar notificacion
-            mostrarNotificacion("contacto eleminado", "correcto");
+            mostrarNotificacion("contacto eliminado Correctamente", "correcto");
           } else {
-            //mostrar una notificacion
+            //hubo un error
             mostrarNotificacion("hubo un error...", "error");
           }
+          setTimeout(() => {
+            window.location.href = 'index.php';
+          }, 4000);
         }
       };
 

@@ -90,7 +90,7 @@ if (array_key_exists ('accion' ,  $_POST ) && $_POST['accion']== 'Editar'){
             /*throw new Exception('Error en prepare: ' . $stmt->error);*/
             $respuesta = [ 'ok' => 'false' ];
         }else{
-            $stmt->bind_param("sssi", $nombre, $empresa, $telefono, $Id );
+            $stmt->bind_param("sssi", $nombre, $telefono, $empresa , $Id );
             $stmt->execute();
             if($stmt->affected_rows ==1){
                 $respuesta = array(
