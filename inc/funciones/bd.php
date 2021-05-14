@@ -8,5 +8,5 @@ define('DB_NOMBRE', 'agendaphp');
 
 $conn = new mysqli(DB_HOST, DB_USUARIO, DB_PASSWORD, DB_NOMBRE , 3306);
 
-//echo $conn->ping();
+//echo $conn->ping(); 
 
